@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Test";
+}
+
+
+<script type='text/javascript'>
+    function loadMapScenario() {
+        var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+            credentials: 'AjbSxlgzSHLbi3vL9WhgUp0AaOyV3zCiARaEx8uNL2ma-aCzmCTjrlVwu0qTttUp',
+            mapTypeId: Microsoft.Maps.MapTypeId.road,
+            zoom: 5
+        });
+
+            var loc = new Microsoft.Maps.Location(@ViewBag.latitude, @ViewBag.longitude);
+            var pin = new Microsoft.Maps.Pushpin(loc);
+
+            map.entities.push(pin);
+        //  Center the map on the user's location.
+            map.setView({ center: loc, zoom: 15 });            
+        
+    }
+</script>
+
+<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario' async defer></script>
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>MAP INTEGRATION</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 map">
+            <div id="myMap" style="width:800px; height:610px;"></div>
+        </div>
+    </div>
+</div>

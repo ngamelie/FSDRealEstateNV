@@ -1,0 +1,15 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    @{
+        <p>
+            Registration succeeded with email @Model
+            <p><a href="./Login">Click here to log in</a></p>            
+        </p>
+    }
+</div>

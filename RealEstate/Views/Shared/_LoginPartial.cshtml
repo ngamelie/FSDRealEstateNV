@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+	@if (SignInManager.IsSignedIn(User))
+	{
+		@if (User.IsInRole("Agent"))
+		{
+			<li class="nav-item">
+				<a class="nav-link" asp-action="Index" asp-controller="AllProperties" title="All Properties">All Properties</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" asp-action="Index" asp-controller="Customer" title="Customers">Customers</a>
+			</li>			
+		}
+		@if (User.IsInRole("Seller"))
+		{
+			<li class="nav-item">
+				<a class="nav-link" asp-action="Index" asp-controller="Properties" title="Properties">Properties</a>
+			</li>			
+		}
+		
+		<li class="nav-item">
+			<a class="nav-link" asp-area="" asp-page="/Account/Manage/Index" title="Manage">Login: @User.Identity.Name!</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+		</li>
+	}
+	else
+	{
+		
+		<li class="nav-item">
+			<a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+		</li>
+	}
+</ul>
